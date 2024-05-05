@@ -22,7 +22,8 @@ class Example implements ShouldQueue
      */
     public function handle(): void
     {
-        abort(500);
+        echo 'Running job: ' . now();
+        sleep(5);
         logger('SUCCESSFULLY DONE! ' . now());
     }
 
