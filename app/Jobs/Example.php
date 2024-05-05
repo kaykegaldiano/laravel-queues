@@ -22,8 +22,17 @@ class Example implements ShouldQueue
      */
     public function handle(): void
     {
-        echo 'Running job...' . PHP_EOL;
-        sleep(2);
+        abort(500);
         logger('SUCCESSFULLY DONE! ' . now());
+    }
+
+    public function backoff(): int
+    {
+        return 5;
+    }
+
+    public function failed(\Throwable $t)
+    {
+        echo 'Failed: ' . $t->getMessage();
     }
 }

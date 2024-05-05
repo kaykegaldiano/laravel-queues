@@ -26,8 +26,6 @@ class Example extends Command
      */
     public function handle()
     {
-        for ($i = 0; $i < 10; $i++) {
-            dispatch(new JobsExample());
-        }
+        dispatch(new JobsExample());
     }
 }
