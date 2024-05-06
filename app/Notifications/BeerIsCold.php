@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class BeerIsCold extends Notification
+class BeerIsCold extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -35,9 +35,12 @@ class BeerIsCold extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line("Hello, {$notifiable->name}! Your beer is cold!")
+                    ->subject('Your beer is cold!')
+                    ->greeting("Hello, {$notifiable->name}!")
+                    ->line("Hello, your beer is cold!")
                     ->action('Get Beer!', url('/'))
-                    ->line('Thank you for buying with us!');
+                    ->line('Thank you for buying with us!')
+                    ->salutation('Happy beer!');
     }
 
     /**
